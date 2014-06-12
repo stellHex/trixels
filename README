@@ -1,0 +1,27 @@
+
+Canvas controls
+---------------------
+LCLICK+DRAG		Draw with foreground color
+RCLICK+DRAG		Draw with background color
+MCLICK+DRAG		Draw with tertiary color
+SHIFT+CLICK+DRAG	Select if first trixel not already selected, deselect otherwise
+ALT+LCLICK		Set foreground color
+ALT+RCLICK		Set background color
+ALT+MCLICK		Set tertiary color
+C			Copy selection
+X			Cut selection, replacing with background color
+V			Reduplicate the previously copied section
+
+Copying controls
+---------------------
+UP/DOWN/LEFT/RIGHT	Move the copied section
+COMMA/PERIOD		Rotate the copied section left/right
+C/V			Paste
+
+Color Controls
+---------------------
+LCLICK (on actives)	Set that color on with HVS
+SPACE			Cycle foreground, background, and tertiary colors
+LCLICK (on palette)	Switch foreground color to that palette color
+ALT+LCLICK		Set palette color
+1-0			Switch the foreground color to corresponding palette color
