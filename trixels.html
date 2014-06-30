@@ -2,6 +2,7 @@
 <html onkeydown='keypress(event.keyCode,event.altKey,event.shiftKey);' onkeyup='keyunpress(event.keyCode,event.altKey,event.shiftKey)' onmousedown='ispainting=true' onmouseup='ispainting=false'>
 <body>
 <title>Trixels Lite</title>
+<table><tr><td>
 <div>
 <input class="color {pickerMode:'HSV'}" id='col'>
 <input class="color {pickerMode:'HSV'}" id='bg'>
@@ -72,6 +73,12 @@ table,th,td {border-spacing:0px;}
 	</g>
 	<rect id=looknicebeforescript x=0 y=0 width=800 height=600 />
 </svg>
+</td>
+<td style='vertical-align:top'>
+	<a href='http://stellhex.github.io/Trixels-Lite/readme.html'>README</a>
+</td>
+</tr>
+</table>
 <script type='text/javascript' src='jscolor/jscolor.js'></script>
 <script>
 var eqtri=.8660254;
@@ -204,7 +211,7 @@ function recolor (that,alt,shift,button,newclick) {
 	}}
 }
 function renderline (that,alt,shift,button,newclick) {
-	
+
 }
 function gettrix (func) {
 	gotten=[];
