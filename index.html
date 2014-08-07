@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html onkeydown='keypress(event.keyCode,event.altKey,event.shiftKey);' onkeyup='keyunpress(event.keyCode,event.altKey,event.shiftKey)' onmousedown='ispainting=true' onmouseup='ispainting=false'>
-<body>
+<html>
+<body class=unselectable >
 <title>Trixels Lite</title>
 <table><tr><td>
-<div>
+<div class=unselectable>
 <input class="color {pickerMode:'HSV'}" id='col'>
 <input class="color {pickerMode:'HSV'}" id='bg'>
 <input class="color {pickerMode:'HSV'}" id='third'>
@@ -17,47 +17,50 @@
 	border-top:4px ridge #A9A9A9;
 	border-bottom:2px solid #A9A9A9;
 	border-right:2px solid #A9A9A9;
+	user-select: none;
 }
 .crsrdropper {cursor:url(dropper.png) 0 31, default;}
 .crsrpointer {cursor:default;}
 .crsrselect {cursor:crosshair;}
 .selected {fill-opacity:.5;}
+.unselectable {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select:none;
+}
 table,th,td {border-spacing:0px;}
 </style>
-<table id=palcursor class=crsrdropper>
+<table id=palcursor class='crsrdropper unselectable'>
 <tr>
-	<td id=pal1 class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FFFFFF;'>&nbsp;</td>
-	<td id=pal2 class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FFFFFF;'>&nbsp;</td>
-	<td id=pal3 class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FFFFFF;'>&nbsp;</td>
-	<td id=pal4 class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FFFFFF;'>&nbsp;</td>
-	<td id=pal5 class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FFFFFF;'>&nbsp;</td>
-	<td id=pal6 class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FFFFFF;'>&nbsp;</td>
-	<td id=pal7 class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FFFFFF;'>&nbsp;</td>
-	<td id=pal8 class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FFFFFF;'>&nbsp;</td>
-	<td id=pal9 class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FFFFFF;'>&nbsp;</td>
-	<td id=pal0 class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FFFFFF;'>&nbsp;</td>
+	<td id=pal1 class=palette style='background-color:#FFFFFF;'>&nbsp;</td>
+	<td id=pal2 class=palette style='background-color:#FFFFFF;'>&nbsp;</td>
+	<td id=pal3 class=palette style='background-color:#FFFFFF;'>&nbsp;</td>
+	<td id=pal4 class=palette style='background-color:#FFFFFF;'>&nbsp;</td>
+	<td id=pal5 class=palette style='background-color:#FFFFFF;'>&nbsp;</td>
+	<td id=pal6 class=palette style='background-color:#FFFFFF;'>&nbsp;</td>
+	<td id=pal7 class=palette style='background-color:#FFFFFF;'>&nbsp;</td>
+	<td id=pal8 class=palette style='background-color:#FFFFFF;'>&nbsp;</td>
+	<td id=pal9 class=palette style='background-color:#FFFFFF;'>&nbsp;</td>
+	<td id=pal0 class=palette style='background-color:#FFFFFF;'>&nbsp;</td>
 </tr>
 <tr>
-	<td class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FF0000;'>&nbsp;</td>
-	<td class=palette onclick='palette(event.altKey,this.style)' style='background-color:#00FF00;'>&nbsp;</td>
-	<td class=palette onclick='palette(event.altKey,this.style)' style='background-color:#0000FF;'>&nbsp;</td>
-	<td class=palette onclick='palette(event.altKey,this.style)' style='background-color:#00FFFF;'>&nbsp;</td>
-	<td class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FF00FF;'>&nbsp;</td>
-	<td class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FFFF00;'>&nbsp;</td>
-	<td class=palette onclick='palette(event.altKey,this.style)' style='background-color:#FFFFFF;'>&nbsp;</td>
-	<td class=palette onclick='palette(event.altKey,this.style)' style='background-color:#999999;'>&nbsp;</td>
-	<td class=palette onclick='palette(event.altKey,this.style)' style='background-color:#555555;'>&nbsp;</td>
-	<td class=palette onclick='palette(event.altKey,this.style)' style='background-color:#000000;'>&nbsp;</td>
+	<td class=palette style='background-color:#FF0000;'>&nbsp;</td>
+	<td class=palette style='background-color:#00FF00;'>&nbsp;</td>
+	<td class=palette style='background-color:#0000FF;'>&nbsp;</td>
+	<td class=palette style='background-color:#00FFFF;'>&nbsp;</td>
+	<td class=palette style='background-color:#FF00FF;'>&nbsp;</td>
+	<td class=palette style='background-color:#FFFF00;'>&nbsp;</td>
+	<td class=palette style='background-color:#FFFFFF;'>&nbsp;</td>
+	<td class=palette style='background-color:#999999;'>&nbsp;</td>
+	<td class=palette style='background-color:#555555;'>&nbsp;</td>
+	<td class=palette style='background-color:#000000;'>&nbsp;</td>
 </tr>
-</table>
+</table class=unselectable >
 <svg height=600 width=800 id='view' viewbox='0 0 40 30' style='shape-rendering:geometricPrecision;'>
 	<defs>
-		<polygon id='trix0' points='.8660254,-.5 0,0 .8660254,.5' wid=0
-			onmousedown='recolor(this.correspondingUseElement,event.altKey,event.shiftKey,event.button,true)'
-			onmouseover='if (ispainting) {if(linetool){renderline(this.correspondingUseElement,event.altKey,event.shiftKey,event.button)}else{recolor(this.correspondingUseElement,event.altKey,event.shiftKey,event.button);}}' />
-		<polygon id='trix1' points='0,1 0,0 .8660254,.5' wid=1
-			onmousedown='recolor(this.correspondingUseElement,evt.altKey,evt.shiftKey,event.button,true)'
-			onmouseover='if(ispainting){if(linetool){renderline(this.correspondingUseElement,event.altKey,event.shiftKey,event.button)}else{recolor(this.correspondingUseElement,event.altKey,event.shiftKey,event.button);}}' />
+		<polygon id='trix0' points='.8660254,-.5 0,0 .8660254,.5' wid=0 />
+		<polygon id='trix1' points='0,1 0,0 .8660254,.5' wid=1 />	
 		<pattern id="selectpattern" x=0 y=0 width=4 height=4 patternUnits="userSpaceOnUse" >
 			<line id=yooo x1=-1  y1=3 x2=1 y2=5 style="stroke:#000000;stroke-width:1.25;" />
 			<line x1=0  y1=0 x2=4 y2=4 style="stroke:#000000;stroke-width:1.25;" />
@@ -67,21 +70,24 @@ table,th,td {border-spacing:0px;}
 	<rect id=selectbg x=-0 y=0 width=800 height=600 style='fill:url(#selectpattern);' />
 	<g id='canvas' transform='rotate(0 40 30)' cursor='default'>
 		<g>
-			<use xlink:href='#trix0' w=0 class='trix crsrpointer w0' x=0 y=0 fillstore='#000000' style='fill:rgb(0, 0, 0);shape-rendering:crispEdges;' />
-			<use xlink:href='#trix1' w=1 class='trix crsrpointer w1' x=0 y=0 fillstore='#000000' style='fill:rgb(0, 0, 0);shape-rendering:crispEdges;' />
+			<use xlink:href='#trix0' w=0 xc=0 yc=0 wc=0 class='trix crsrpointer w0' x=0 y=0 fillstore='#000000' style='fill:rgb(0, 0, 0);shape-rendering:crispEdges;' />
+			<use xlink:href='#trix1' w=1 xc=0 yc=0 wc=1 class='trix crsrpointer w1' x=0 y=0 fillstore='#000000' style='fill:rgb(0, 0, 0);shape-rendering:crispEdges;' />
 		</g>
 	</g>
 	<rect id=looknicebeforescript x=0 y=0 width=800 height=600 />
 </svg>
 </td>
-<td style='vertical-align:top'>
+<td style='vertical-align:top; width:100%'>
 	<a href='http://stellhex.github.io/trixels/readme.html'>README</a>
+	<div><button id=savebutton>Save</button><button id=loadbutton>Load</button></div>
+	<div><textarea id=saveinput style="width:100%; height:200px;font-family:Menlo"></textarea></div>
 </td>
 </tr>
 </table>
 <script type='text/javascript' src='jscolor/jscolor.js'></script>
 <script>
-var eqtri=.8660254;
+
+if (true) {var eqtri=.8660254;
 var q;
 var selectmode=['','selected '];
 var ispainting=false;
@@ -106,21 +112,70 @@ var lining=false;
 var linetool=false;
 var linecolor='#ffffff';
 var savestring;
+var xlist=[]
+var ylist=[]}
+
+document.addEventListener('keydown',keypress);
+document.addEventListener('keyup',keyunpress);
+document.addEventListener('mousedown',paintify);
+document.addEventListener('mouseup',depaintify);
+canvas.addEventListener('document',realign);
+function realign(arg) {
+	if (typeof arg === 'undefined') {var arg=event;}
+	var key=arg.keyCode, alt=arg.altKey, shift=arg.shiftKey;
+	if (shift) {trixclassrepl(/crsr[^ ]* /, 'crsrselect ');}
+	else if (alt) {trixclassrepl(/crsr[^ ]* /, 'crsrdropper ');}
+	else {trixclassrepl(/crsr[^ ]* /, 'crsrpointer ');}}
+function paintify(){ispainting=true;}
+function depaintify(){ispainting=false;}
+var bleh1 = document.getElementById('palcursor').children[0].children;
+var bleh2 = document.getElementById('palcursor').children[0].children;
+for (var i=0;i<bleh1.length;i++){
+	bleh1[i].addEventListener('click',palette);
+	bleh2[i].addEventListener('click',palette);
+}
+document.getElementById('trix1').addEventListener('mousedown',recolor1);
+document.getElementById('trix1').addEventListener('mouseover',recolor2);
+document.getElementById('trix0').addEventListener('mousedown',recolor1);
+document.getElementById('trix0').addEventListener('mouseover',recolor2);
+function recolor1 (arg) {
+	if (typeof arg === 'undefined') {var arg=event;}
+	if (arg.target.correspondingUseElement) recolor(arg.target.correspondingUseElement,arg.altKey,arg.shiftKey,arg.button,true);
+	else recolor(arg.target,arg.altKey,arg.shiftKey,arg.button,true);}
+function recolor2 (arg) {
+	if(ispainting){if (typeof arg === 'undefined') {var arg=event;}
+	if (arg.target.correspondingUseElement) recolor(arg.target.correspondingUseElement,arg.altKey,arg.shiftKey,arg.button,false);
+	else recolor(arg.target,arg.altKey,arg.shiftKey,arg.button,true);}}
+document.getElementById('loadbutton').addEventListener('click',saveload);
+document.getElementById('savebutton').addEventListener('click',showsave);
+function showsave () {save(); document.getElementById('saveinput').value=savestring;}
+function saveload () {savestring=document.getElementById('saveinput').value; load();}
+
+
+function locator(obj) {return xlist[obj.xc][obj.yc][obj.wc];}
 function getcoor(dastring, which) {
 	var regex = new RegExp(' '+which+'((-|)\\d+)');
-	try{var dacoor = regex.exec(dastring)[1];}catch(err){console.log(dasting);}
+	try{var dacoor = regex.exec(dastring)[1];}catch(err){console.log(dastring);}
 	return parseInt(dacoor);
 }
 function getz(x,y,w){return -x+y-w;}
 function changecoor (objlist, which, func) {
-	for (var i=0; i<objlist.length; i++) {
-		var daclass = objlist[i].getAttribute('class');
+	for (var j=0; j<objlist.length; j++) {
+		var dacoor=parseInt(objlist[j].getAttribute(which+'c'))
+		objlist[j].setAttribute(which+'c',func(dacoor,j));
+		if (objlist[j].class) {
+		var daclass = objlist[j].getAttribute('class');
 		var dacoor = getcoor(daclass,which);
-		objlist[i].setAttribute('class',daclass.replace(which+dacoor,which+func(dacoor,i)));
+		objlist[j].setAttribute('class',daclass.replace(which+dacoor,which+func(dacoor,j)));}
 	}
 }
 function changeallcoor (objlist, func) {
 	for (var i=0; i<objlist.length; i++) {
+		var newcoor=func(objlist[i].xc,objlist[i].yc,objlist[i].wc)
+		objlist[i].xc=newcoor[0]
+		objlist[i].yc=newcoor[1]
+		objlist[i].wc=newcoor[2]
+		if (objlist[i].class) {
 		var regex = / x(-|)\d+/;
 		var regey = / y(-|)\d+/;
 		var regew = / w(-|)\d+/;
@@ -130,17 +185,23 @@ function changeallcoor (objlist, func) {
 			/(-|)\d+/.exec(regew.exec(daclass)[0])[0]];}catch(err){console.log(daclass);}
 		newcoor=func(parseInt(dacoor[0]),parseInt(dacoor[1]),parseInt(dacoor[2]))
 		objlist[i].setAttribute('class',daclass.replace('x'+dacoor[0],'x'+newcoor[0]).replace('y'+dacoor[1],'y'+newcoor[1]).replace('w'+dacoor[2],'w'+newcoor[2]));
+		}
+		;//FLAG
 	}
 }
-for (var i=1; i<viewbox.baseVal.height+1; i++) {
+for (var i=1; i<viewbox.baseVal.height; i++) {
 	athing.appendChild(athing.children[0].cloneNode()).setAttribute('y',i);
+	athing.children[athing.children.length-1].setAttribute('yc',i);
 	athing.appendChild(athing.children[1].cloneNode()).setAttribute('y',i);
+	athing.children[athing.children.length-1].setAttribute('yc',i);
 }
+athing.appendChild(athing.children[0].cloneNode()).setAttribute('y',i);
+athing.children[athing.children.length-1].setAttribute('yc',i);
 canvas.appendChild(canvas.children[0].cloneNode(true)).transform.baseVal.appendItem(view.createSVGTransform()).setRotate(180,eqtri,15);
 var ugh = canvas.children[1].children.length;
-for (var i=0; i<alltrix.length; i++) {alltrix[i].className.baseVal+=' x'+alltrix[i].getAttribute('x')+' y'+alltrix[i].getAttribute('y');}
+for (var i=0; i<alltrix.length; i++) {alltrix[i].className.baseVal+=' x0'+' y'+alltrix[i].getAttribute('y');}
 for (var i=0; i<viewbox.baseVal.height+1; i++) {
-	changecoor(canvas.children[1].children,'w',function(k,i){return 1-k});
+	changecoor(canvas.children[1].children,'w',function(k){return 1-k});
 	changecoor(canvas.children[1].children,'x',function(k){return 1});
 	changecoor(canvas.children[1].children,'y',function(k){return viewbox.baseVal.height-k});
 }
@@ -152,7 +213,16 @@ for (var i=1; i<viewbox.baseVal.width/2/eqtri+1; i++) {
 	changecoor(canvas.children[canvas.children.length-1].children,'x',function(k){return k+i*2});
 	changecoor(canvas.children[canvas.children.length-1].children,'y',function(k){return k+i});
 }
-
+function initcoor() {for (var i=0; i<alltrix.length; i++) {
+	var thetrix=alltrix[i]
+	if (xlist[thetrix.getAttribute('xc')]==undefined) {xlist[thetrix.getAttribute('xc')]=[]}
+	if (ylist[thetrix.getAttribute('yc')]==undefined) {ylist[thetrix.getAttribute('yc')]=[]}
+	if (xlist[thetrix.getAttribute('xc')][thetrix.getAttribute('yc')]==undefined) {xlist[thetrix.getAttribute('xc')][thetrix.getAttribute('yc')]=[]}
+	if (ylist[thetrix.getAttribute('yc')][thetrix.getAttribute('xc')]==undefined) {ylist[thetrix.getAttribute('yc')][thetrix.getAttribute('xc')]=[]}
+	xlist[thetrix.getAttribute('xc')][thetrix.getAttribute('yc')][thetrix.getAttribute('wc')]=thetrix;
+	ylist[thetrix.getAttribute('yc')][thetrix.getAttribute('xc')][thetrix.getAttribute('wc')]=thetrix;
+}}
+initcoor()
 function recolor (that,alt,shift,button,newclick) {
 	if (!copying) {
 	if (button==0) {
@@ -228,13 +298,13 @@ function trixclassrepl (rep, wit) {
 }
 function pasteddepreview () {
 	for (var i=0; i<copiedtrix.length; i++) {
-		try{var thetrix = canvas.getElementsByClassName(copiedtrix[i].class)[0];
+		try{var thetrix = locator(copiedtrix[i]);//FLAG
 		thetrix.style.fill=thetrix.getAttribute('fillstore');
 		thetrix.setAttribute('class',thetrix.getAttribute('class').replace('selected ',''));} catch (err) {}
 }}
 function pastedpreview () {
 	for (var i=0; i<copiedtrix.length; i++) {
-		try{var thetrix = canvas.getElementsByClassName(copiedtrix[i].class)[0];
+		try{var thetrix = locator(copiedtrix[i]);//FLAG
 		thetrix.style.fill=copiedtrix[i].fill;
 		thetrix.setAttribute('class',thetrix.getAttribute('class').replace('','selected '));} catch (err) {}
 	}
@@ -245,8 +315,10 @@ function copiedmove (dir, amount) {
 	changecoor(copiedtrix, dir, function (k) {return k+amount;});
 	pastedpreview();
 }
-function keypress (key, alt, shift) {
-	if (!copying){console.log(event.keyCode);
+function keypress (arg) {
+	if (typeof arg === 'undefined') {var arg=event;}
+	var key=arg.keyCode,alt=arg.altKey,shift=arg.shiftKey
+	if (!copying){console.log(arg.keyCode);
 	if (key==32) {
 		var temp=zeropick.value;
 		zeropick.color.fromString(twopick.value);
@@ -273,11 +345,15 @@ function keypress (key, alt, shift) {
 		}}
 		copiedtrix=[];
 		for (var i=0; i<tempcopiedtrix.length; i++) {
-			copiedtrix[i]={class:' '+/\b\w(-|)\d.*/.exec(tempcopiedtrix[i].getAttribute('class'))[0],fill:tempcopiedtrix[i].style.fill,
+			copiedtrix[i]={
+				xc:parseInt(tempcopiedtrix[i].getAttribute("xc")),
+				yc:parseInt(tempcopiedtrix[i].getAttribute("yc")),
+				wc:parseInt(tempcopiedtrix[i].getAttribute("wc")),
+				fill:tempcopiedtrix[i].style.fill,
 				getAttribute:function (a) {return this[a];},
 				setAttribute:function (a,b) {this[a]=b;}};
-			avgx+=parseInt(/(-|)\d+/.exec(/ x(-|)\d+/.exec(copiedtrix[i].class)[0])[0]);
-			avgy+=parseInt(/(-|)\d+/.exec(/ y(-|)\d+/.exec(copiedtrix[i].class)[0])[0]);
+			avgx+=copiedtrix[i].xc;
+			avgy+=copiedtrix[i].yc;
 		}
 		avgx=parseInt(avgx/copiedtrix.length);
 		avgy=parseInt(avgy/copiedtrix.length);
@@ -301,12 +377,14 @@ function keypress (key, alt, shift) {
 	}
 	else if (key==67||key==86) {
 		for (var i=0; i<copiedtrix.length; i++) {
-			var thetrix = canvas.getElementsByClassName(copiedtrix[i].class)[0];
+			var thetrix = locator(copiedtrix[i]);
 			try{thetrix.setAttribute('fillstore',thetrix.style.fill);}catch(err){};
 			copying=false;
 	}}
 }}
-function keyunpress (key, alt, shift) {
+function keyunpress (arg) {
+	if (typeof arg === 'undefined') {var arg=event}
+	var key=arg.keyCode, alt=arg.altKey, shift=arg.shiftKey;
 	if (!copying){
 	if (key==18) {
 		document.getElementById('palcursor').className='crsrdropper';
@@ -320,7 +398,9 @@ function keyunpress (key, alt, shift) {
 	}
 	}
 }
-function palette (alt, stylin) {
+function palette (arg) {
+	if (typeof arg === 'undefined') {var arg=event}
+	var alt=arg.altKey, stylin=arg.target.style;
 	if (alt) {stylin.backgroundColor='#'+zeropick.value;}
 	else {
 		var tempcol=stylin.backgroundColor;
