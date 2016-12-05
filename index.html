@@ -134,10 +134,6 @@ for (var i=0;i<bleh1.length;i++){
 	bleh1[i].addEventListener('click',palette);
 	bleh2[i].addEventListener('click',palette);
 }
-document.getElementById('trix1').addEventListener('mousedown',recolor1);
-document.getElementById('trix1').addEventListener('mouseover',recolor2);
-document.getElementById('trix0').addEventListener('mousedown',recolor1);
-document.getElementById('trix0').addEventListener('mouseover',recolor2);
 function recolor1 (arg) {
 	if (typeof arg === 'undefined') {var arg=event;}
 	if (arg.target.correspondingUseElement) recolor(arg.target.correspondingUseElement,arg.altKey,arg.shiftKey,arg.button,true);
@@ -192,12 +188,10 @@ function changeallcoor (objlist, func) {
 for (var i=1; i<viewbox.baseVal.height; i++) {
 	athing.appendChild(athing.children[0].cloneNode()).setAttribute('y',i);
 	athing.children[athing.children.length-1].setAttribute('yc',i);
-	athing.children[athing.children.length-1].addEventListener('mousedown',recolor1);
-	athing.children[athing.children.length-1].addEventListener('mouseover',recolor2);
+	//addEventListener('mousedown',recolor1);
+	//addEventListener('mouseover',recolor2);
 	athing.appendChild(athing.children[1].cloneNode()).setAttribute('y',i);
 	athing.children[athing.children.length-1].setAttribute('yc',i);
-	athing.children[athing.children.length-1].addEventListener('mousedown',recolor1);
-	athing.children[athing.children.length-1].addEventListener('mouseover',recolor2);
 }
 athing.appendChild(athing.children[0].cloneNode()).setAttribute('y',i);
 athing.children[athing.children.length-1].setAttribute('yc',i);
@@ -216,6 +210,11 @@ for (var i=1; i<viewbox.baseVal.width/2/eqtri+1; i++) {
 	canvas.appendChild(canvas.children[1].cloneNode(true)).transform.baseVal.insertItemBefore(view.createSVGTransform(),0).setTranslate(eqtri*i*2,0);
 	changecoor(canvas.children[canvas.children.length-1].children,'x',function(k){return k+i*2});
 	changecoor(canvas.children[canvas.children.length-1].children,'y',function(k){return k+i});
+}
+for (var i=0; i<alltrix.length; i++)
+{
+	alltrix[i].addEventListener('mousedown',recolor1);
+	alltrix[i].addEventListener('mouseover',recolor2);
 }
 function initcoor() {for (var i=0; i<alltrix.length; i++) {
 	var thetrix=alltrix[i]
