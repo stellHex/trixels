@@ -192,8 +192,12 @@ function changeallcoor (objlist, func) {
 for (var i=1; i<viewbox.baseVal.height; i++) {
 	athing.appendChild(athing.children[0].cloneNode()).setAttribute('y',i);
 	athing.children[athing.children.length-1].setAttribute('yc',i);
+	athing.children[athing.children.length-1].addEventListener('mousedown',recolor1);
+	athing.children[athing.children.length-1].addEventListener('mouseover',recolor2);
 	athing.appendChild(athing.children[1].cloneNode()).setAttribute('y',i);
 	athing.children[athing.children.length-1].setAttribute('yc',i);
+	athing.children[athing.children.length-1].addEventListener('mousedown',recolor1);
+	athing.children[athing.children.length-1].addEventListener('mouseover',recolor2);
 }
 athing.appendChild(athing.children[0].cloneNode()).setAttribute('y',i);
 athing.children[athing.children.length-1].setAttribute('yc',i);
