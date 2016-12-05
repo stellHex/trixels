@@ -20,7 +20,7 @@ C/V			Paste
 
 Color Controls
 ---------------------
-LCLICK (on actives)	Set that color on with HVS
+LCLICK (on actives)	Set that color with HVS
 SPACE			Cycle foreground, background, and tertiary colors
 LCLICK (on palette)	Switch foreground color to that palette color
 ALT+LCLICK		Set palette color
